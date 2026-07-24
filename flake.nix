@@ -60,10 +60,19 @@
         }
       );
 
-      homeModules.default = ./nix/module.nix;
+      homeModules.default =
+        {
+          pkgs,
+          lib,
+          ...
+        }:
+        let
+          system = pkgs.stdenv.hostPlatform.system;
+        in
+        {
+          imports = [ ./nix/module.nix ];
 
-      overlays.default = final: _prev: {
-        nirikit = final.callPackage ./nix/package.nix { };
-      };
+          programs.nirikit.package = lib.mkDefault self.packages.${system}.default;
+        };
     };
 }

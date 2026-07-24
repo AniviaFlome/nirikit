@@ -15,8 +15,6 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.nirikit;
-      defaultText = lib.literalExpression "pkgs.nirikit";
       description = "nirikit package to use.";
     };
 

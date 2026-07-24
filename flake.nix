@@ -61,5 +61,9 @@
       );
 
       homeModules.default = ./nix/module.nix;
+
+      overlays.default = final: _prev: {
+        nirikit = final.callPackage ./nix/package.nix { };
+      };
     };
 }

@@ -13,7 +13,10 @@ in
   options.programs.nirikit = {
     enable = lib.mkEnableOption "nirikit — launch applications on niri workspaces";
 
-    package = lib.mkPackageOption pkgs "nirikit" { } // {
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.nirikit;
+      defaultText = lib.literalExpression "pkgs.nirikit";
       description = "nirikit package to use.";
     };
 
